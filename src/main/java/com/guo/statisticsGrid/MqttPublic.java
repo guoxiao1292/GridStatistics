@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  * @author: Gxy
  * @Date: 2018/11/6
  */
+
 public class MqttPublic implements Runnable{
     public MqttAsyncClient getClient() {
         return client;
