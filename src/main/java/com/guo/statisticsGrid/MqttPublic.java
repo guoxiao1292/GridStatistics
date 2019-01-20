@@ -51,11 +51,7 @@ public class MqttPublic implements Runnable{
         } catch (MqttException e) {
             e.printStackTrace();
         }
-        try {
-            Thread.currentThread().join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         Thread r = new Thread(this);
         r.start();
     }
