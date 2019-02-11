@@ -3,17 +3,19 @@ package com.guo.statisticsGrid;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 
 @Slf4j
-@Service
 /**
  * @Description
  * @author: Gxy
  * @Date: 2018/11/6
  */
-
+@Component
 public class MqttPublic implements Runnable{
     public MqttAsyncClient getClient() {
         return client;
@@ -28,6 +30,7 @@ public class MqttPublic implements Runnable{
     @Autowired
     private StaSubject staSubject;
 
+    @PostConstruct
     public void init() {
         //观察者初始化
         statistics.init();

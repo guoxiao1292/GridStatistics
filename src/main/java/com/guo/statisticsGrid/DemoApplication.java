@@ -12,17 +12,17 @@ import java.util.Map;
 
 @Slf4j
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-
-    @Autowired
-    private MqttPublic mqttPublic;
-    @Override
-    public void run(String... args) throws Exception {
-        mqttPublic.init();
+}
+//    @Autowired
+//    private MqttPublic mqttPublic;
+//    @Override
+//    public void run(String... args) throws Exception {
+//        mqttPublic.init();
 
 //        String name1 = "$ren_saida_ctrl_rtData_agen$";
 //        String name2 = "$ren_saida_ctrl_rtData_gen$";
@@ -47,5 +47,5 @@ public class DemoApplication implements CommandLineRunner {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-    }
-}
+//    }
+//}
