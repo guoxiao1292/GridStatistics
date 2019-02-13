@@ -21,9 +21,9 @@ import java.util.*;
 @Service
 public class PriceParams implements Observer{
     @Autowired
-    private ConstFiled staPointsConfig;
+    private StaPoints staPoints;
     @Autowired
-    private Sta sta;
+    private ConstFiled sta;
     @Autowired
     private YearPrice yearPrice;
     @Autowired
@@ -54,17 +54,7 @@ public class PriceParams implements Observer{
     double tagVal;
 
     public void init(){
-        //映射统计点对象
-        ObjectMapper jackson = new ObjectMapper();
-        try {
-            String s = staPointsConfig.prices;
-            sta = (Sta) jackson.readValue(s, Sta.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ;
-        }
-
-        priceEx = new StringBuffer(sta.getEx());
+        priceEx = new StringBuffer(sta.getSta().getEx());
         Map<String,Object> exTagsMap = new HashMap<String, Object>() ;
         int pos = 0;
         int endPos = 0;
@@ -75,7 +65,7 @@ public class PriceParams implements Observer{
             String topic = var.substring(0, var.lastIndexOf("_"));
             topics.add(topic.replace("_","/"));
         }
-        tag = sta.getName();
+        tag = sta.getSta().getName();
         staSubject.addObserver(this);
         staSubject.setTopics(topics);
     }
@@ -104,7 +94,7 @@ public class PriceParams implements Observer{
         jsonPayload.put("rtData", jsonValueOb);
         if (Mqtt.getClient().isConnected()){
             try {
-                Mqtt.getClient().publish(staPointsConfig.staTopic, jsonPayload.toString().getBytes(), 1, false);
+                Mqtt.getClient().publish(staPoints.getStaTopic(), jsonPayload.toString().getBytes(), 1, false);
             } catch (MqttException e) {
                 e.printStackTrace();
             }

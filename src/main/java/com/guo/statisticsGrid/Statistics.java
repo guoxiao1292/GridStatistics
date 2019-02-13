@@ -23,8 +23,6 @@ import java.util.*;
 @Service
 public class Statistics implements Observer{
     @Autowired
-    private ConstFiled staPointsConfig;
-    @Autowired
     private StaPoints staPoints;
     @Autowired
     private StaSubject staSubject;
@@ -51,16 +49,6 @@ public class Statistics implements Observer{
 
 
     public void init(){
-        //映射统计点对象
-        ObjectMapper jackson = new ObjectMapper();
-        try {
-            String s = staPointsConfig.sta;
-            staPoints = (StaPoints) jackson.readValue(s, StaPoints.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ;
-        }
-
         //遍历所有表达式，表达式操作数中的所有变量
         for(int i=0; i<staPoints.getSta().size(); ++i){
             StringBuffer ex = new StringBuffer(staPoints.getSta().get(i).getEx());
@@ -152,7 +140,7 @@ public class Statistics implements Observer{
         jsonPayload.put("rtData", jsonValueOb);
         if (Mqtt.getClient().isConnected()){
             try {
-                Mqtt.getClient().publish(staPointsConfig.staTopic, jsonPayload.toString().getBytes(), 1, false);
+                Mqtt.getClient().publish(staPoints.getStaTopic(), jsonPayload.toString().getBytes(), 1, false);
             } catch (MqttException e) {
                 e.printStackTrace();
             }

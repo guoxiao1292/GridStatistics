@@ -1,0 +1,32 @@
+statistics:
+ staTopic: ren/huam/staVal
+ sta:
+  - name: loadConsum
+    ex: "#ren_huam_ctrl_pvTGen#"
+  - name: pvTGen
+    ex: "#ren_huam_ctrl_pvTGen#"
+  - name: co2Reduction
+    ex: "0.864*#ren_huam_ctrl_tGen#"
+  - name: wdTGen
+    ex: "#ren_huam_ctrl_wdTGen#"
+  - name: coalReduction
+    ex: "0.33*#ren_huam_ctrl_tGen#"
+  - name: generateIncome
+    ex: "0.7*#ren_huam_ctrl_tGen#"
+  - name: pcsIncome
+    ex: "0.5*#ren_huam_ctrl_tGen#"
+  - name: chargingIncome
+    ex: "2*#ren_huam_ctrl_tGen#"
+  - name: allIncome
+    ex: "2*#ren_huam_ctrl_tGen#"
+
+---
+mqtt:
+ url: tcp://10.0.5.49:1883
+ username: xiaoming
+ password: 1
+ priceTopic: ren/huam/ctr
+ prices:
+  prices:
+  - name: price
+    ex: "#ren_huam_sta_price#"

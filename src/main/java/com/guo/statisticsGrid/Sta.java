@@ -10,14 +10,9 @@ import org.springframework.stereotype.Service;
  * @Date: 2018/12/25
  */
 @Component
-@Scope("prototype")
 public class Sta {
-    @JsonProperty
     private String name;
-
-    @JsonProperty
     private String ex;
-
     public void setName(String name){
         this.name = name;
     }
