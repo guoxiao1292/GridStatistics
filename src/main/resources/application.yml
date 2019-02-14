@@ -1,32 +1,32 @@
 statistics:
- staTopic: ren/huam/staVal
+ staTopic: ren/tongw/staVal
  sta:
   - name: loadConsum
-    ex: "#ren_huam_ctrl_pvTGen#"
+    ex: "#ren_tongw_load_tG#"
   - name: pvTGen
-    ex: "#ren_huam_ctrl_pvTGen#"
+    ex: "#ren_tongw_pv_tG#"
   - name: co2Reduction
-    ex: "0.864*#ren_huam_ctrl_tGen#"
+    ex: "0.864*#ren_tongw_ctrl_tG#"
   - name: wdTGen
-    ex: "#ren_huam_ctrl_wdTGen#"
+    ex: "#ren_tongw_wind_tG#"
   - name: coalReduction
-    ex: "0.33*#ren_huam_ctrl_tGen#"
+    ex: "0.33*#ren_tongw_ctrl_tG#"
   - name: generateIncome
-    ex: "0.7*#ren_huam_ctrl_tGen#"
+    ex: "0.7*#ren_tongw_ctrl_tG#"
   - name: pcsIncome
-    ex: "0.5*#ren_huam_ctrl_tGen#"
+    ex: "0.5*#ren_tongw_ess_tIn#"
   - name: chargingIncome
-    ex: "2*#ren_huam_ctrl_tGen#"
+    ex: "2*#ren_tongw_chrg_tG#"
   - name: allIncome
-    ex: "2*#ren_huam_ctrl_tGen#"
+    ex: "0.7*#ren_tongw_ctrl_tG#+0.5*#ren_tongw_chrg_tG#+0.5*#ren_tongw_ess_tIn#"
 
 ---
 mqtt:
  url: tcp://10.0.5.49:1883
  username: xiaoming
  password: 1
- priceTopic: ren/huam/ctr
+ priceTopic: ren/tongw/ctr
  prices:
   prices:
   - name: price
-    ex: "#ren_huam_sta_price#"
+    ex: "#ren_tongw_staVal_price#"

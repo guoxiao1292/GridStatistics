@@ -124,9 +124,9 @@ public class Statistics implements Observer{
                 for ( Map.Entry<String, Object> it:varss.entrySet()) {
                     Object v = vars.get(it.getKey());
                     //获取到变量的数据异常判断
-                    if (null == v){
+                    if (0 == v.getClass().getFields().length){
                         log.error("操作数{}获取数据错误！",it.getKey());
-                        GOTO loop;
+                        continue loop ;
                     }
                     Double f = Double.parseDouble((String)v);
                     it.setValue(f);

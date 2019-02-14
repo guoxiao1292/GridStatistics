@@ -2,9 +2,8 @@ package com.guo.statisticsGrid;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.security.KeyStore;
+import java.util.*;
 
 /**
  * @Description
@@ -33,6 +32,7 @@ public class StaSubject implements Subject{
 
     String topic = "";
     String payLoad = "";
+    Map<String, String> toPay = new HashMap<String, String>();
 
     StaSubject() {
         staList = new ArrayList<Observer>();
@@ -58,7 +58,9 @@ public class StaSubject implements Subject{
         if(changed){
             for (Observer o:
             staList) {
-                o.upDate(topic, payLoad);
+                for(Map.Entry<String, String> it:toPay.entrySet()){
+                    o.upDate(it.getKey(), it.getValue());
+                }
             }
         }
     }
@@ -70,6 +72,7 @@ public class StaSubject implements Subject{
         else{
             this.topic = top;
             this.payLoad = payLoad;
+            toPay.put(top, payLoad);
             changed = true;
         }
     }
