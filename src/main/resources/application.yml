@@ -3,6 +3,8 @@ statistics:
  sta:
   - name: loadConsum
     ex: "#ren_tongw_load_tG#"
+  - name: gridUp
+    ex: "#ren_tongw_ctrl_ug#"
   - name: pvTGen
     ex: "#ren_tongw_pv_tG#"
   - name: co2Reduction
@@ -22,7 +24,7 @@ statistics:
 
 ---
 mqtt:
- url: tcp://10.0.5.49:1883
+ url: tcp://10.0.5.59:1883
  username: xiaoming
  password: 1
  priceTopic: ren/tongw/ctr

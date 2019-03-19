@@ -30,8 +30,6 @@ public class StaSubject implements Subject{
      */
     boolean changed;
 
-    String topic = "";
-    String payLoad = "";
     Map<String, String> toPay = new HashMap<String, String>();
 
     StaSubject() {
@@ -70,8 +68,6 @@ public class StaSubject implements Subject{
             changed = false;
         }
         else{
-            this.topic = top;
-            this.payLoad = payLoad;
             toPay.put(top, payLoad);
             changed = true;
         }

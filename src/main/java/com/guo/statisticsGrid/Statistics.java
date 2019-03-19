@@ -81,7 +81,11 @@ public class Statistics implements Observer{
         try {
             jsonNode = jackson.readTree(payLoad);
         } catch (IOException e) {
+            log.error(payLoad);
             e.printStackTrace();
+        }
+        if(null == jsonNode){
+            return ;
         }
         if(!jsonNode.has("rtData"))
         {
@@ -103,11 +107,10 @@ public class Statistics implements Observer{
                 vars.replace(entry.getKey(),rtData.get(field).toString());
             }
         }
-        run();
     }
 
 
-    private void run() {
+    public void run() {
         JSONObject jsonValueOb = new JSONObject();
             loop:for(int i=0; i<staPoints.getSta().size(); ++i){
                 //统计量名称
@@ -121,11 +124,11 @@ public class Statistics implements Observer{
 
                 //统计量对应表达式操作数变量。一个统计量name对应配置的多个操作数varss，分别获取值、替换表达式
                 Map<String,Object> varss = staTagsMap.get(name);
-                for ( Map.Entry<String, Object> it:varss.entrySet()) {
+                for (Map.Entry<String, Object> it:varss.entrySet()) {
                     Object v = vars.get(it.getKey());
                     //获取到变量的数据异常判断
                     if (0 == v.getClass().getFields().length){
-                        log.error("操作数{}获取数据错误！",it.getKey());
+                        log.debug("操作数{}获取数据错误！",it.getKey());
                         continue loop ;
                     }
                     Double f = Double.parseDouble((String)v);

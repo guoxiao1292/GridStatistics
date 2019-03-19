@@ -43,7 +43,7 @@ public class MqttPublic implements Runnable{
         connOpts.setUserName(constFiled.username);
         connOpts.setPassword(constFiled.password.toCharArray());
         try {
-            client = new MqttAsyncClient(constFiled.url, MqttClient.generateClientId());
+            client = new MqttAsyncClient(constFiled.url, "sta_"+MqttClient.generateClientId());
             Callback ck = new Callback();
             client.setCallback(ck);
             client.connect(connOpts).waitForCompletion();
@@ -63,14 +63,15 @@ public class MqttPublic implements Runnable{
     @Override
     public void run() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         while (true){
             staSubject.notifyObservers();
+            statistics.run();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
